@@ -1,40 +1,44 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+ const express = require('express');
+ const bodyParser = require('body-parser');
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+ const app = express();
+ const PORT = process.env.PORT || 5000;
 
-app.use(bodyParser.json());
+ app.use(bodyParser.json());
 
-// Signup endpoint
-app.post('/signup', (req, res) => {
+
+ app.post('/signup', (req, res) => {
     const { username, email, password, dateOfBirth } = req.body;
 
-    // Validation
-    if (!username) {
-        return res.status(400).json({ error: "Username cannot be empty" });
-    }
+        
 
+                    
+    if (!username) {
+    return res.status(400).json({ error: "Username cannot be empty" });
+ }
     if (!email) {
-        return res.status(400).json({ error: "Email cannot be empty" });
-    }
+    return res.status(400).json({ error: "Email cannot be empty" });
+}
 
     if (!password || password.length < 8 || password.length > 16) {
-        return res.status(400).json({ error: "Password length should be greater than 8 or less than or equal to 16" });
+    return res.status(400).json({ error: "Password length should be greater than 8 or less than or equal to 16" });
     }
 
     if (!dateOfBirth) {
-        return res.status(400).json({ error: "Date of Birth is required" });
+    return res.status(400).json({ error: "Date of Birth is required" });
     }
 
-    // Simulate user creation
+                                  
     const newUser = { username, email, password, dateOfBirth };
     console.log('User created:', newUser);
 
     res.status(201).json({ message: "User registered successfully", user: newUser });
-});
+    });
 
-// Server
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+
+
+
+                                
